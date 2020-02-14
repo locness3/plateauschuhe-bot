@@ -4,7 +4,11 @@ import json
 import requests
 import discord
 
-DISCORD_TOKEN = sys.argv[1]
+if len(sys.argv) >= 2:
+    DISCORD_TOKEN = sys.argv[1]
+else:
+    print("No discord bot token provided!")
+    sys.exit()
 
 class MyClient(discord.Client):
     async def on_ready(self):
