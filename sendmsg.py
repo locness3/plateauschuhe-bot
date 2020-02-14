@@ -17,10 +17,9 @@ class MyClient(discord.Client):
         requestHeaders = {
             'User-Agent': 'Plateauschuhe-bot 0.1'
         }
-        imgSearchResults = requests.get("https://api.qwant.com/api/search/images?count=50&q=plateauschuhe&t=images&safesearch=1&locale=fr_FR&uiv=4", headers=requestHeaders).content
-        imgSearchResultsParsed = json.loads(imgSearchResults)
+        imgSearchResults = requests.get("https://api.qwant.com/api/search/images?count=50&q=plateauschuhe&t=images&safesearch=1&locale=fr_FR&uiv=4", headers=requestHeaders).json()
         imgNum = random.randrange(0, 50)
-        imgDict = imgSearchResultsParsed["data"]["result"]["items"]
+        imgDict = imgSearchResults["data"]["result"]["items"]
         imgObj = imgDict[imgNum]
         imgUrl = "https:" + imgObj["media_fullsize"]
         channel = self.get_channel(677885779267289092)
